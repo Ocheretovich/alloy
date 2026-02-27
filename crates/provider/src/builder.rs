@@ -644,12 +644,7 @@ impl<L, F, N: Network> ProviderBuilder<L, F, N> {
         L: ProviderLayer<crate::layers::AnvilProvider<RootProvider<N>, N>, N>,
         F: TxFiller<N> + ProviderLayer<L::Provider, N>,
     {
-        let anvil_layer = crate::layers::AnvilLayer::from(f(Default::default()));
-        let url = anvil_layer.endpoint_url();
-
-        let rpc_client = ClientBuilder::default().http(url);
-
-        self.layer(anvil_layer).connect_client(rpc_client)
+        self.connect_anvil_with_config(f)
     }
 
     /// Build this provider with anvil, using the BoxTransport.
