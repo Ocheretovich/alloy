@@ -2659,6 +2659,7 @@ mod tests {
     }
 
     #[tokio::test]
+    #[ignore = "eth_fillTransaction is not supported by Anvil"]
     async fn test_fill_transaction() {
         use alloy_network::TransactionBuilder;
         use alloy_primitives::{address, U256};
